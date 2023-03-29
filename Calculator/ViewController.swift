@@ -215,6 +215,10 @@ class ViewController: UIViewController {
     
     /// Rules for equal button
     func isEqual() {
+        if !input.numberString.hasSuffix(".") {
+            addInputCharacter(".0")
+        }
+        
         ///  appends to input array if there's any value available
         if !input.numberString.isEmpty {
             /// Discards the option of "0." and adds a zero at the end
@@ -263,6 +267,10 @@ class ViewController: UIViewController {
     
     /// Rules for user input appendix
     func userInputAppendcontrol() {
+        if !input.numberString.hasSuffix(".") {
+            addInputCharacter(".0")
+        }
+        
         if inputArray.count == 0 && !input.numberString.isEmpty { //If the input array is empty and the entry isn't, append the input to the input array. And displays the input
             if input.numberString == "0."{
                 input.numberString += "0"
@@ -440,7 +448,7 @@ class ViewController: UIViewController {
     }
     
     func updateStatusDisplay(status: Bool, mass: Bool) {
-        //print("\nanswer.numberString: \(answer.numberString) \ninputArray: \(inputArray) \ninput.numberString: \(input.numberString) \ninputFormattedNumber: \(input.numberStringFormatted) \ninputFormatted: \(String(input.numberStringFormatted)) \ninputArrayFormatted: \(disolveStringArray(inputArrayFormatted)) \ncalculatorStep: \(calculatorStep.operationName)")
+        print("\nanswer.numberString: \(answer.numberString) \ninputArray: \(inputArray) \ninputCount: \(input.numberString.count) \ninput.numberString: \(input.numberString) \ninputFormattedNumber: \(input.numberStringFormatted) \ninputFormatted: \(String(input.numberStringFormatted)) \ninputArrayFormatted: \(disolveStringArray(inputArrayFormatted)) \ncalculatorStep: \(calculatorStep.operationName)")
         if status == true {
             statusScreen.text = "\(disolveStringArray(inputArrayFormatted))"
         }
