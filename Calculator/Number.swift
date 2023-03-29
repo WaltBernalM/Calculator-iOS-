@@ -76,7 +76,7 @@ struct Number {
         }
         
         // Set cientific notation if the integer character count is higher than 9 (999,999,999)
-        if integerCount > 9 || decimalCount > 6 {
+        if integerCount > 9 {
             formattedNumber = String(format: "%.2e", numberDouble)
         } else {
             for character in integerPart {
@@ -86,8 +86,14 @@ struct Number {
                 formattedNumber += "."
             }
             if decimalPart.count > 0 {
+                let decimalCharLimit = 7
+                var decimalCharCount = 0
                 for character in decimalPart {
                     formattedNumber += character
+                    decimalCharCount += 1
+                    if decimalCharCount > decimalCharLimit {
+                        break
+                    }
                 }
             }
         }

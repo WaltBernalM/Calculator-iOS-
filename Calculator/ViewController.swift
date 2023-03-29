@@ -267,7 +267,7 @@ class ViewController: UIViewController {
     
     /// Rules for user input appendix
     func userInputAppendcontrol() {
-        if !input.numberString.hasSuffix(".") {
+        if !input.numberString.hasSuffix(".") && !input.numberString.isEmpty {
             addInputCharacter(".0")
         }
         
