@@ -215,7 +215,7 @@ class ViewController: UIViewController {
     
     /// Rules for equal button
     func isEqual() {
-        if !input.numberString.hasSuffix(".") {
+        if !input.numberString.contains(".") {
             addInputCharacter(".0")
         }
         
@@ -267,7 +267,7 @@ class ViewController: UIViewController {
     
     /// Rules for user input appendix
     func userInputAppendcontrol() {
-        if !input.numberString.hasSuffix(".") && !input.numberString.isEmpty {
+        if !input.numberString.contains(".") && !input.numberString.isEmpty {
             addInputCharacter(".0")
         }
         
@@ -467,12 +467,15 @@ class ViewController: UIViewController {
         return unifiedString
     }
     
-    /// Function to do the math to a string that already has been fixed to be processed
+    /// Function to do the math to a string that already has been fixed to be processed, also fixes at 8 decimal places the floating-point precision
     func stringToMath(_ string: String) -> Double {
         let expn = NSExpression(format: string)
-        return expn.expressionValue(with: Double.self, context: nil) as! Double
+        let result = expn.expressionValue(with: nil, context: nil) as! Double
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 8
+        formatter.minimumFractionDigits = 0
+        return Double(formatter.string(from: NSNumber(value: result))!)!
     }
-
     
     /// Function to update the mass application inside the veiw
     func updateMass() {
