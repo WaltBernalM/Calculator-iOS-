@@ -457,6 +457,7 @@ class ViewController: UIViewController {
         }
     }
     
+    /// Disolves an array [1, 2, ., 3, +, 4, ., 0] to convert it to a string
     func disolveStringArray(_ array: [String]) -> String {
         var unifiedString = String()
         for index in array {
@@ -466,11 +467,14 @@ class ViewController: UIViewController {
         return unifiedString
     }
     
+    /// Function to do the math to a string that already has been fixed to be processed
     func stringToMath(_ string: String) -> Double {
         let expn = NSExpression(format: string)
         return expn.expressionValue(with: Double.self, context: nil) as! Double
     }
 
+    
+    /// Function to update the mass application inside the veiw
     func updateMass() {
         if answer.numberDouble == 0 {
             massInLb.numberString = "0.00"
